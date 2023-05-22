@@ -32,5 +32,6 @@ module.exports = {
     'no-shadow': 0,
     'linebreak-style': 0,
     'no-restricted-exports': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
   },
 }

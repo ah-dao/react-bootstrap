@@ -1,0 +1,9 @@
+.header-class {
+    margin: 0px;
+    padding: 16px 0px;
+    .header-container {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+}
