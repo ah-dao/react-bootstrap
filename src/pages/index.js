@@ -1,2 +1,3 @@
-export { default as DashboardDefault } from './Dashboard'
-export { default as CompaniesDefault } from './Companies'
+export { default as UserDefault, loader as userLoader } from './User'
+export { default as OverviewDefault } from './Overview'
+export { default as RepositoriesDefault } from './Repositories'

@@ -1,0 +1,89 @@
+@import '../../../style/index.scss';
+
+.flex-class {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.header-class {
+    height: 72px;
+    margin: 0px;
+    padding: 16px 0px;
+    background-color: $headerBack;
+    .header-container {
+        justify-content: start;
+        margin: 0px 40px;
+        padding: 0px 16px;
+        .header-icon {
+            height: 32px;
+            line-height: 32px;
+            .github-icon {
+                margin-right: 16px;
+            }
+        }
+        .nav-button {
+
+        }
+        .header-menu-wrapper {
+            width: 100%;
+            justify-content: space-between;
+            .menu-nav {
+                height: 100%;
+                line-height: 100%;
+            }
+        }
+        .ant-btn {
+            font-size: 16px;
+            color: $headerColor;
+        }
+        .ant-btn :hover {
+            opacity: .75;
+        }
+        .text-left {
+            .text-left-search {
+                .ant-input {
+                    height: 36px;
+                    padding-top: 6px;
+                    padding-bottom: 6px;
+                    background-color: transparent;
+                    border-color: #57606a;
+                }
+                .ant-input::-webkit-input-placeholder {
+                    color: #57606a;
+                }
+                .ant-input-search-button {
+                    padding-top: 6px;
+                    padding-bottom: 6px;
+                    height: 36px;
+                    background-color: transparent;
+                    color: #57606a !important;
+                    border-color: #57606a;
+                    border-left: none;
+                } 
+                .ant-input-search-button:hover {
+                    color: #57606a !important;
+                    
+                }
+            }
+            
+            .text-left-button {
+                height: auto;
+                background-color: transparent;
+                padding: 4px 8px;
+            }
+            .text-left-button>span {
+                line-height: 24px;
+                height: 24px;
+            }
+            .ant-btn-link:hover > span {
+                opacity: .75;
+            }
+            .text-left-button:hover {
+                opacity: .75;
+                border-color: #bdbdbd;
+            }
+        }
+    }
+}

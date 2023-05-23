@@ -1,0 +1,28 @@
+@import '../../../style/index.scss';
+.drop-down-item {
+    display: inline-block;
+    height: 100%;
+    padding: 8px;
+    .ant-space {
+        height: 100%;
+        line-height: 100%;
+        font-size: $fontSize;
+        gap: 4px !important;
+    }
+    .ant-space-item {
+        color: $headerColor;
+        .anticon-down svg {
+            font-size: 11px;
+        }
+    }
+    .ant-space:hover {
+        .ant-space-item {
+            color: $fontSize;
+            opacity: .75;
+            .anticon-down svg {
+                opacity: .5;
+            }
+        }
+    }
+    
+}

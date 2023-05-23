@@ -1,68 +1,56 @@
 import React from 'react'
 import {
-  Layout, Dropdown, Space,
+  Layout, Input, Button,
 } from 'antd'
-import { DownOutlined, SmileOutlined } from '@ant-design/icons'
+import { GithubOutlined } from '@ant-design/icons'
 
-import './Header.scss'
+import './scss/Header.scss'
+import HeaderDropdown from './HeaderDropdown'
 
-const items = [
-  {
-    key: '1',
-    label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-        1st menu item
-      </a>
-    ),
-  },
-  {
-    key: '2',
-    label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-        2nd menu item (disabled)
-      </a>
-    ),
-    icon: <SmileOutlined />,
-    disabled: true,
-  },
-  {
-    key: '3',
-    label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-        3rd menu item (disabled)
-      </a>
-    ),
-    disabled: true,
-  },
-  {
-    key: '4',
-    danger: true,
-    label: 'a danger item',
-  },
-]
+const { Search } = Input
 export default function Header() {
   const { Header } = Layout
-  const clickFuc = (e) => {
-    e.preventDefault()
-  }
+  const onSearch = (value) => console.log(value)
+  const menu = [
+    'Product',
+    'Solutions',
+    'Open Source',
+  ]
   return (
     <Header className="header-class">
-      <div className="header-container">
-        <div className="logo" />
-        <div className="header-menu-wrapper">
-          <Dropdown
-            menu={{
-              items,
-            }}
-          >
-            <a onClick={clickFuc} role="menuitem" tabIndex={0}>
-              <Space>
-                Hover me
-                <DownOutlined />
-              </Space>
-            </a>
-          </Dropdown>
+      <div className="header-container flex-class">
+        <div className="header-icon">
+          <GithubOutlined
+            className="github-icon"
+            style={
+            {
+              color: 'white',
+              fontSize: '32px',
+            }
+          }
+          />
         </div>
+        <div className="header-menu-wrapper flex-class">
+          <nav className="menu-nav">
+            {
+              menu.map((item, index) => <HeaderDropdown key={item} name={item} index={index} />)
+            }
+            <Button type="link" className="nav-button">Pricing</Button>
+          </nav>
+          <div className="text-left flex-class">
+            <Search
+              className="text-left-search"
+              placeholder="Search"
+              onSearch={onSearch}
+              style={{
+                width: 200,
+              }}
+            />
+            <Button type="link">Sign in</Button>
+            <Button className="text-left-button">Sign out</Button>
+          </div>
+        </div>
+
       </div>
     </Header>
   )

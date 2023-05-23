@@ -13,26 +13,12 @@ function App() {
   const {
     token: { colorBgContainer },
   } = theme.useToken()
-  // const navRoutes = routes.filter((route) => route.isNav === true)
-  // function getItem(label, key, icon, children) {
-  //   return {
-  //     key,
-  //     icon,
-  //     children,
-  //     label,
-  //   }
-  // }
-
-  // const menuItems = navRoutes.map((route) => getItem(
-  //   <NavLink to={route.path}>{route.title}</NavLink>,
-  //   route.path,
-  // ))
 
   return (
     <div className="App">
       <Layout className="layout">
         <HeaderDefault />
-        <Content style={{ padding: '0 50px' }}>
+        <Content>
           <div className="site-layout-content" style={{ background: colorBgContainer }}>
             <Outlet />
           </div>

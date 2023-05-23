@@ -1,17 +1,28 @@
-import { DashboardDefault, CompaniesDefault } from '../pages'
+import {
+  OverviewDefault, RepositoriesDefault, UserDefault,
+  userLoader,
+} from '../pages'
 
 const routes = [
   {
-    path: 'dashboard',
-    element: <DashboardDefault />,
-    title: 'Dashboard',
-    isNav: true,
-  },
-  {
-    path: 'companies',
-    element: <CompaniesDefault />,
-    title: 'Companies',
-    isNav: true,
+    path: ':username',
+    element: <UserDefault />,
+    loader: userLoader,
+    children: [
+      {
+        path: 'overview',
+        element: <OverviewDefault />,
+        title: 'Overview',
+        isNav: true,
+      },
+      {
+        index: true,
+        path: 'repositories',
+        element: <RepositoriesDefault />,
+        title: 'Repositories',
+        isNav: true,
+      },
+    ],
   },
 ]
 
