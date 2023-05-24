@@ -1,6 +1,6 @@
 import {
   OverviewDefault, RepositoriesDefault, UserDefault,
-  userLoader,
+  userLoader, repositoriesLoader,
 } from '../pages'
 
 const routes = [
@@ -19,6 +19,7 @@ const routes = [
         index: true,
         path: 'repositories',
         element: <RepositoriesDefault />,
+        loader: repositoriesLoader,
         title: 'Repositories',
         isNav: true,
       },

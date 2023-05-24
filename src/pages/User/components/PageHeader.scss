@@ -62,16 +62,15 @@
                 background-color: $--color-action-list-item-default-hover-bg;
             }
             .ant-menu-item::after {
-                content: '';
-                color: transparent;
                 content: "";
-                height: 100%;
-                left: 50%;
-                min-height: 48px;
-                position: absolute;
-                top: 50%;
+                height: 2;
                 transform: translateX(-50%) translateY(-50%);
+                position: absolute;
+                top: 125%;
+                left: 50%;
                 width: 100%;
+                color: transparent;
+                border-bottom-color: transparent;
             }
             .ant-menu-item-selected::after {
                 color: $--color-primer-border-active;

@@ -14,7 +14,9 @@
     background-color: $headerBack;
     .header-container {
         justify-content: start;
-        margin: 0px 40px;
+        max-width: 1012px;
+        margin-left: auto;
+        margin-right: auto;
         padding: 0px 16px;
         .header-icon {
             height: 32px;
@@ -22,9 +24,6 @@
             .github-icon {
                 margin-right: 16px;
             }
-        }
-        .nav-button {
-
         }
         .header-menu-wrapper {
             width: 100%;

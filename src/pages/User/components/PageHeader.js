@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import './PageHeader.scss'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import {
   BookOutlined, HomeOutlined, UserOutlined,
 } from '@ant-design/icons'
@@ -8,6 +8,7 @@ import { Menu, Avatar } from 'antd'
 
 export default function PageHeader() {
   const [current, setCurrent] = useState('mail')
+  const location = useLocation()
 
   const items = [
     {
@@ -33,10 +34,10 @@ export default function PageHeader() {
       icon: <BookOutlined />,
     },
   ]
-  const onClick = (e) => {
-    console.log('click ', e)
-    setCurrent(e.key)
-  }
+  useLayoutEffect(() => {
+    const temp = location.pathname.split('/')
+    setCurrent(temp[2])
+  }, [location])
   return (
     <header className="page-head-class">
       <div className="container-lg">
@@ -46,7 +47,7 @@ export default function PageHeader() {
         </h1>
       </div>
       <div className="container-lg">
-        <Menu className="page-head-menu" onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+        <Menu className="page-head-menu" selectedKeys={[current]} mode="horizontal" items={items} />
       </div>
     </header>
   )

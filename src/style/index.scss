@@ -19,3 +19,35 @@ $--color-primer-border-active: #fd8c73;
 $--color-action-list-item-default-hover-bg: rgba(208,215,222,0.32);
 // border default color
 $--color-border-default: #d0d7de;
+// button color
+$--color-btn-bg: #f6f8fa;
+$--color-btn-text: #24292f;
+$--color-btn-border: rgba(31,35,40,0.15);
+$--color-btn-shadow: 0 1px 0 rgba(31,35,40,0.04);
+$--color-btn-inset-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+// size
+$--base-size-16: 1rem;
+$--base-size-8: 0.5rem;
+$--base-size-4: 0.25rem;
+
+// page default color
+$--color-canvas-default: #ffffff;
+$--color-border-default: #d0d7de;
+
+// radius
+$--borderRadius-medium: 6px;
+
+// text size
+$--text-body-size-small: 0.75rem;
+
+// border
+$--borderWidth-thin: max(1px, 0.0625rem);
+$--color-border-muted: hsla(210,18%,87%,1);
+$--color-topic-tag-border: rgba(0,0,0,0);
+
+// text color
+$--color-fg-muted: #656d76;
+$--color-accent-fg: #0969da;
+$--color-accent-subtle: #ddf4ff;
+$--color-fg-on-emphasis: #ffffff;
+$--color-accent-emphasis: #0969da;

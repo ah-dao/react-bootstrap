@@ -1,0 +1,18 @@
+@import '../../../style/index.scss';
+.select-item-class {
+    margin-left: $--base-size-8;
+    margin-right: $--base-size-4;
+    width: auto !important;
+    .ant-select-selector {
+        
+        padding: 5px 16px !important;
+        color: $--color-btn-text !important;
+        background-color: $--color-btn-bg !important;
+        border-color: $--color-btn-border !important;
+        box-shadow: $--color-btn-shadow,$--color-btn-inset-shadow !important;
+        .ant-select-selection-item {
+            line-height: 18px;
+            font-weight: 500;
+        }
+    }
+}
