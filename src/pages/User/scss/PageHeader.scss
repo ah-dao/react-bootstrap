@@ -1,0 +1,37 @@
+@import '../../../style/index.scss';
+@import '../../../style/PageHeaderMix.scss';
+.page-head-class {
+    @include page-head-mix;
+    .user-container {
+        max-width: 1012px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .head-profile {
+        height: 32px;
+        margin-top: 16px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: flex-start;
+        .profile-text {
+            font-weight: 500;
+            font-size: 20px;
+            color: $--color-fg-default;
+        }
+        .profile-image {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+            margin-top: -2px;
+            margin-bottom: -2px;
+            background-color: $--color-avatar-bg;
+            border-radius: $--borderRadius-medium;
+            box-shadow: 0 0 0 1px $--color-avatar-border;
+            display: inline-block;
+            flex-shrink: 0;
+            line-height: 1;
+            overflow: hidden;
+            vertical-align: middle;
+        }
+    }
+}

@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {
   SmileTwoTone, VerifiedOutlined, ForkOutlined, StarOutlined, InfoCircleOutlined, NodeIndexOutlined,
 } from '@ant-design/icons'
 
-export default function ListItem({ item }) {
+export default function ListItem({ item, username }) {
   const imageArrKey = ['language', 'license', 'forks_count', 'stargazers_count', 'open_issues_count', 'pull_request']
   // license pull_request 没有找到
   const imageArrLable = [<SmileTwoTone key="0" />, <VerifiedOutlined key="1" />, <ForkOutlined key="2" />,
@@ -21,7 +21,6 @@ export default function ListItem({ item }) {
       imageArr.push(temp)
     }
   })
-
   const getMonthStr = (month) => {
     switch (month) {
       case 0:
@@ -90,9 +89,9 @@ export default function ListItem({ item }) {
         <div className="flex-dom">
           <div className="flex-auto">
             <h3 className="wb-break-all">
-              <NavLink className="nav-link-class">
+              <Link to={`/content/${username}/${item.name}`}>
                 { item.name }
-              </NavLink>
+              </Link>
               <span className="label Label--secondary">{ item.visibility }</span>
             </h3>
             <p className="wb-break-word">
@@ -153,4 +152,5 @@ ListItem.propTypes = {
       PropTypes.any,
     ]),
   }).isRequired,
+  username: PropTypes.string.isRequired,
 }

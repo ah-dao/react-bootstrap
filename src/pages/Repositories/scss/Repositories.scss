@@ -1,9 +1,11 @@
 @import '../../../style/index.scss';
+@import '../../../style/MixStyle.scss';
 
 .repositories-container {
     max-width: 1012px;
     margin-right: auto;
     margin-left: auto;
+    padding-bottom: 16px;
     @media screen and (min-width: 1012px){
         padding-right: $--base-size-16 !important;
         padding-left: $--base-size-16 !important;
@@ -51,26 +53,18 @@
                 .nav-link-class {
                     color: $--color-accent-fg;
                 }
+                .nav-link-class:hover {
+                    text-decoration: underline;
+                }
                 .wb-break-all {
                     text-align: left;
                     font-size: 20px;
                     font-weight: $--base-text-weight-semibold;
                     .label {
-                        margin-left: $--base-size-4;
-                        margin-bottom: $--base-size-4;
-                        vertical-align: middle;
-                        border: $--borderWidth-thin solid $--color-border-default;
-                        border-radius: 2em;
-                        display: inline-block;
-                        font-size:$--text-body-size-small;
-                        font-weight: $--base-text-weight-medium;
-                        line-height: 18px;
-                        padding: 0 7px;
-                        white-space: nowrap;
+                        @include label-mix;
                     }
                     .Label--secondary {
-                        border-color: $--color-border-default;
-                        color: $--color-fg-muted;
+                        @include Label--secondary-mix
                     }
                 }
                 .wb-break-word {
@@ -135,6 +129,96 @@
                     line-height: 16px;
                     vertical-align: middle;
                 }
+            }
+        }
+    }
+    .paginate-container {
+        margin-top: 16px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        .ant-pagination-next {
+            color: $--color-accent-fg;
+
+        }
+        .ant-pagination-item {
+            min-width: 32px;
+            padding: 5px 10px;
+            margin-right: 4px;
+            font-style: normal;
+            line-height: 20px;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            transition: border-color .2s cubic-bezier(0.3, 0, 0.5, 1);
+            a {
+                padding: 0px;
+                color: $--color-fg-default;
+            }
+        }
+        .ant-pagination-item-active {
+            background-color: $--color-accent-emphasis;
+            border-color: transparent;
+            a {
+                color: $--color-fg-on-emphasis;
+            }
+        }
+        .ant-pagination-next, .ant-pagination-prev {
+            margin-inline-end: 4px;
+            min-width: 32px;
+            height: 31px;
+            padding: 5px 10px;
+            font-style: normal;
+            line-height: 20px;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            transition: border-color .2s cubic-bezier(0.3, 0, 0.5, 1);
+            a {
+                font-weight: 400;
+                font-size: 14px;
+                padding: 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $--color-accent-fg;
+                .anticon-right {
+                    display: inline-block;
+                    font-size: 12px;
+                    height: 12px;
+                    margin-left: 8px;
+                }
+                .anticon-left {
+                    display: inline-block;
+                    font-size: 12px;
+                    height: 12px;
+                    margin-right: 8px;
+                }
+            }
+        }
+        .ant-pagination-item:hover, .ant-pagination-next:hover, 
+        .ant-pagination-next:hover, .ant-pagination-prev:hover {
+            text-decoration: none;
+            border-color: $--color-border-default;
+            transition-duration: .1s;
+            background-color: transparent;
+        }
+        .ant-pagination-disabled:hover {
+            border-color: transparent;
+        }
+        .ant-pagination-disabled {
+            a {
+                color: $--color-primer-fg-disabled;
             }
         }
     }

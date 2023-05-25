@@ -1,12 +1,17 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import PageHeader from './components/PageHeader'
-// import { getUserRepo } from '../../network'
+import { getUserInfo } from '../../network'
 
 export async function loader({ params }) {
-//   const data = await getUserRepo(params.username)
-//   console.log('data', data)
-  return { params }
+  const result = await getUserInfo(params)
+  if (!result) {
+    throw new Response('', {
+      status: 404,
+      statusText: 'Not Found',
+    })
+  }
+  return { data: result.data }
 //   const contact = await getContact(params.contactId)
 //   // 捕获数据获取失败错误
 //   if (!contact) {
@@ -18,7 +23,6 @@ export async function loader({ params }) {
 //   return { contact }
 }
 export default function User() {
-//   const { username } = useLoaderData()
   return (
     <div>
       <PageHeader />

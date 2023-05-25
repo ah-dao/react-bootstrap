@@ -1,0 +1,17 @@
+@mixin label-mix {
+    margin-left: $--base-size-4;
+    margin-bottom: $--base-size-4;
+    vertical-align: middle;
+    border: $--borderWidth-thin solid $--color-border-default;
+    border-radius: 2em;
+    display: inline-block;
+    font-size:$--text-body-size-small;
+    font-weight: $--base-text-weight-medium;
+    line-height: 18px;
+    padding: 0 7px;
+    white-space: nowrap;
+}
+@mixin Label--secondary-mix {
+    border-color: $--color-border-default;
+    color: $--color-fg-muted;
+}

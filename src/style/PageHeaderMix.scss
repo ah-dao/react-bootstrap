@@ -1,5 +1,4 @@
-@import '../../../style/index.scss';
-.page-head-class {
+@mixin page-head-mix {
     width: 100%;
     height: 100px;
     background-color: $--color-page-header-bg;
@@ -8,31 +7,9 @@
     color: $--color-fg-default;
     border-bottom: 1px solid $--color-border-default;
     .container-lg {
-        height: auto;
         padding: 0px 16px;
-        max-width: 1012px;
-        margin-right: auto;
-        margin-left: auto;
+        height: auto;
         border: 1px solid transparent;
-        .head-profile {
-            height: 32px;
-            margin-top: 16px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: flex-start;
-            .profile-text {
-                font-weight: 500;
-                font-size: 20px;
-                color: $--color-fg-default;
-            }
-            .profile-image {
-                width: 30px;
-                height: 30px;
-                margin-right: 8px;
-                margin-top: -2px;
-                margin-bottom: -2px;
-            }
-        }
         .page-head-menu {
             height: 30px;
             background-color: $--color-page-header-bg;

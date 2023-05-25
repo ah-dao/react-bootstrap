@@ -1,5 +1,6 @@
-import React from 'react'
-import { Input } from 'antd'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Input, Pagination } from 'antd'
+import { RightOutlined, LeftOutlined } from '@ant-design/icons'
 import { useLoaderData } from 'react-router-dom'
 
 import SelectItem from './components/SelectItem'
@@ -10,7 +11,8 @@ import { getUserRepo } from '../../network'
 
 const { Search } = Input
 export async function loader({ params }) {
-  const result = await getUserRepo(params.username)
+  // 进入路由请求第一页
+  const result = await getUserRepo({ username: params.username, page: 1 })
   if (!result) {
     throw new Response('', {
       status: 404,
@@ -18,6 +20,8 @@ export async function loader({ params }) {
     })
   }
   const { data } = result
+  const nextPage = result.nextPage !== undefined ? result.nextPage : -1
+  const lastPage = result.lastPage !== undefined ? result.lastPage : -1
   // const data = [
   //   {
   //     id: 1296269,
@@ -250,11 +254,17 @@ export async function loader({ params }) {
   //     },
   //   },
   // ]
-  return { data }
+  return {
+    data, lastPage, nextPage, params,
+  }
 }
 export default function Repositories() {
   const onSearch = (value) => console.log(value)
-  const { data } = useLoaderData()
+  const { data, lastPage, params } = useLoaderData()
+  const [searchParams] = useState(params)
+  // 总数为总页数乘以每页数量
+  const [total] = useState(lastPage * 5)
+  const [dataList, setDataList] = useState(data)
 
   const selectArr = [
     {
@@ -294,6 +304,45 @@ export default function Repositories() {
       ],
     },
   ]
+  const itemRender = (_, type, originalElement) => {
+    if (type === 'prev') {
+      return (
+        <a>
+          <LeftOutlined />
+          <span>Previous</span>
+        </a>
+      )
+    }
+    if (type === 'next') {
+      return (
+        <a>
+          <span>Next</span>
+          <RightOutlined />
+        </a>
+      )
+    }
+    return originalElement
+  }
+  const getSearchData = async (params) => {
+    const result = await getUserRepo(params)
+    if (!result) {
+      throw new Response('', {
+        status: 404,
+        statusText: 'Not Found',
+      })
+    }
+    const { data } = result
+    setDataList(data)
+  }
+  const changePage = useCallback((page) => {
+    const params = {
+      ...searchParams,
+      page,
+    }
+    getSearchData(params)
+  })
+
+  useEffect(() => {})
   return (
     <div className="repositories-container">
       <div className="search-bar">
@@ -322,9 +371,25 @@ export default function Repositories() {
       <div className="repo-list-wrap">
         <ul className="repo-list">
           {
-            data.map((item) => <ListItem item={item} key={item.id} />)
+            dataList.map((item) => (
+              <ListItem
+                item={item}
+                key={item.id}
+                username={params.username}
+              />
+            ))
           }
         </ul>
+      </div>
+      <div className="paginate-container">
+        <Pagination
+          defaultCurrent={1}
+          total={total}
+          onChange={changePage}
+          showSizeChanger={false}
+          defaultPageSize={5}
+          itemRender={itemRender}
+        />
       </div>
     </div>
   )
