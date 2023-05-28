@@ -40,22 +40,7 @@
             }
             .box-body {
                 width: 100%;
-                .box-row {
-                    width: 100%;
-                    border-top: 1px solid $--color-border-muted;
-                    border-left: 1px solid $--color-border-muted;
-                    border-right: 1px solid $--color-border-muted;
-                    border-width: $--borderWidth-thin;
-                    list-style-type: none;
-                    margin-top: calc($--borderWidth-thin*-1);
-                    padding: $--stack-padding-normal;
-                }
-                .box-row:last-of-type {
-                    border-bottom-left-radius: $--borderRadius-medium;
-                    border-bottom-right-radius: $--borderRadius-medium;
-                    border-bottom: 1px solid $--color-border-muted;
-                    border-width: $--borderWidth-thin;
-                }
+                
             }
         }
     }

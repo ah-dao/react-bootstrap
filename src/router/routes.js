@@ -1,6 +1,7 @@
 import {
-  OverviewDefault, RepositoriesDefault, UserDefault, ContentDefault, CodeDefault, IssuesDefault,
-  userLoader, repositoriesLoader, contentLoader, codeLoader,
+  OverviewDefault, RepositoriesDefault, UserDefault,
+  ContentDefault, CodeDefault, IssuesDefault, CodeItemDefault,
+  userLoader, repositoriesLoader, contentLoader, codeLoader, codeItemLoader,
 } from '../pages'
 
 const routes = [
@@ -35,6 +36,11 @@ const routes = [
         element: <CodeDefault />,
         title: 'Code',
         loader: codeLoader,
+      },
+      {
+        element: <CodeItemDefault />,
+        path: ':path',
+        loader: codeItemLoader,
       },
       {
         path: 'issues',
