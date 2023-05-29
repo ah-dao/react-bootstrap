@@ -42,6 +42,48 @@
                 .auther {
                     margin-left: $--base-size-8;
                 }
+                
+            }
+            .repository-details-container {
+                .pagehead-actions {
+                    .page-head-button {
+                        font-weight: 500;
+                        height: auto;
+                        padding: 3px 12px;
+                        font-size: 12px;
+                        line-height: 20px;
+                        color: $--color-btn-text;
+                        background-color: $--color-btn-bg;
+                        border-color: $--color-btn-border;
+                        box-shadow: $--color-btn-shadow,$--color-btn-inset-shadow;
+                        transition: 80ms cubic-bezier(0.33, 1, 0.68, 1);
+                        transition-property: color,background-color,box-shadow,border-color;
+                        .anticon  {
+                            color: $--color-fg-muted;
+                        }
+                        .repo-network-counter {
+                            margin-left: $--base-size-8;
+                            color: inherit;
+                            text-shadow: none;
+                            vertical-align: top;
+                            background-color: $--color-btn-counter-bg;
+                            border: $--borderWidth-thin solid $--color-counter-border;
+                            border-radius: 2em;
+                            display: inline-block;
+                            font-size: $--text-body-size-small;
+                            font-weight: $--base-text-weight-medium;
+                            line-height: calc($--base-size-20 - $--borderWidth-thin*2);
+                            min-width: $--base-size-20;
+                            padding: 0 6px;
+                            text-align: center;
+                        }
+                    }
+                    .page-head-button:hover {
+                        background-color: $--color-btn-hover-bg;
+                        border-color: $--color-btn-hover-border;
+                        transition-duration: .1s;
+                    }
+                }
             }
        } 
     }

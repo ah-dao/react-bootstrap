@@ -1,37 +1,32 @@
 import React, { useEffect } from 'react'
 import { Button } from 'antd'
-import { useLoaderData, useLocation } from 'react-router-dom'
+import { useLoaderData } from 'react-router-dom'
 import { getRepoContent } from '../../network'
-// import { BoxRow } from '../../components/BoxRow'
+import { BoxRow } from '../../components/BoxRow'
 
-export function loader({ params }) {
-  return { params }
+export async function loader({ params }) {
+  const { '*': splat } = params
+  let data = []
+  const response = await getRepoContent({ owner: params.owner, repo: params.repo, path: splat })
+  if (response.status === 200 && response.data.length) {
+    const dir = []
+    const file = []
+    response.data.forEach((item) => {
+      if (item.type === 'dir') {
+        dir.push(item)
+      } else {
+        file.push(item)
+      }
+    })
+    data = [...dir, ...file]
+  }
+  return { params, path: splat, data }
 }
 
 export default function CodeItem() {
-  const { params } = useLoaderData()
-  const { state } = useLocation()
-  // const [dataList, setDataList] = useState([])
+  const { data } = useLoaderData()
 
   useEffect(() => {
-    const getDataList = async (path) => {
-      let data = []
-      const response = await getRepoContent({ ...params, path })
-      if (response.status === 200 && response.data.length) {
-        const dir = []
-        const file = []
-        response.data.forEach((item) => {
-          if (item.type === 'dir') {
-            dir.push(item)
-          } else {
-            file.push(item)
-          }
-        })
-        data = [...dir, ...file]
-      }
-      console.log('result', data)
-    }
-    getDataList(state.path)
   })
   return (
     <div>
@@ -46,15 +41,15 @@ export default function CodeItem() {
         <div className="box-header">...</div>
         <div className="box-body">
           {
-            // dataList.map((item) => (
-            //   <BoxRow
-            //     key={item.path}
-            //     path={item.path}
-            //     name={item.name}
-            //     type={item.type}
-            //     flag="codeitem"
-            //   />
-            // ))
+            data.map((item) => (
+              <BoxRow
+                key={item.path}
+                path={item.path}
+                name={item.name}
+                type={item.type}
+                flag="codeitem"
+              />
+            ))
           }
         </div>
       </div>

@@ -1,0 +1,40 @@
+@import '../../../style/index.scss';
+@import '../../../style/MixStyle.scss';
+.code-about-class {
+    color: $--color-fg-default;
+    text-align: left;
+    .mt-h4 {
+        font-weight: $--base-text-weight-semibold;
+        font-size: 16px;
+        margin-bottom: $--base-size-16;
+    }
+    .mt-p {
+        margin-top: $--base-size-16;
+        margin-bottom: $--base-size-16;
+        font-size: 16px
+    }
+    .topic-items {
+        @include topic-tag-hover-mix;
+    }
+    .topic-tag {
+        @include topic-tag-mix;
+    }
+    .mt-item {
+        margin-top: $--base-size-8;
+        line-height: 1.5;
+        a {
+            color: $--color-fg-muted;
+            .anticon {
+                margin-right: $--base-size-8;
+                font-size: 16px;
+                font-weight: 600;
+            }
+        }
+        a:hover {
+            color: $--color-accent-fg;
+        }
+        strong {
+            font-weight: $--base-text-weight-semibold;
+        }
+    }
+}

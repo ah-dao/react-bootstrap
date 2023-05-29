@@ -18,11 +18,10 @@ function DirIcon(props) {
 export default function BoxRow({
   path, name, type, flag,
 }) {
-  console.log('flag path', flag, path)
-  const controlIcon = (flag) => {
-    if (flag === 'dir') {
+  const controlIcon = (temp) => {
+    if (temp === 'dir') {
       return <DirIcon />
-    } if (flag === 'file') {
+    } if (temp === 'file') {
       return <FileOutlined style={{ fontSize: '16px' }} />
     }
     return null
@@ -38,11 +37,14 @@ export default function BoxRow({
         <span className="text-style">
           {
             flag === 'code' ? (
-              <Link to={path} state={{ path }}>
+              // code 主页面需要先跳转到子页面
+              <Link to={`path\\${path}`} state={{ path }}>
                 {name}
               </Link>
             ) : (
-              <Link replace={path} state={{ path }}>
+              // codeitem 子页面则在该页面路由 path 的基础上接着 push 路由
+              // 使用 * 匹配新 push 的路由
+              <Link to={path} state={{ path }}>
                 {name}
               </Link>
             )

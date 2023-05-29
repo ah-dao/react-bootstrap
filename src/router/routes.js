@@ -39,7 +39,7 @@ const routes = [
       },
       {
         element: <CodeItemDefault />,
-        path: ':path',
+        path: 'path/*',
         loader: codeItemLoader,
       },
       {

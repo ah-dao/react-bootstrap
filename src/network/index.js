@@ -1,7 +1,7 @@
 import { Octokit } from 'octokit'
 
 const octokit = new Octokit({
-  auth: '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',
+  auth: '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',
   // auth: 'token',
 })
 
@@ -56,6 +56,40 @@ export async function getRepoContent({ owner, repo, path = null }) {
     owner,
     repo,
     path,
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  })
+  return response
+}
+
+export async function getARepo({ owner, repo }) {
+  const response = await octokit.request('GET /repos/{owner}/{repo}', {
+    owner,
+    repo,
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  })
+  return response
+}
+
+export async function getRepoReadme({ owner, repo }) {
+  const response = await octokit.request('GET /repos/{owner}/{repo}/readme', {
+    owner,
+    repo,
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  })
+  return response
+}
+
+export async function mdRender({ text, mode = null, context = null }) {
+  const response = await octokit.request('POST /markdown', {
+    text,
+    mode,
+    context,
     headers: {
       'X-GitHub-Api-Version': '2022-11-28',
     },

@@ -15,7 +15,7 @@
     .repo-layout {
         display: grid;
         grid-template-columns: minmax(0, calc(100% - $--Layout-sidebar-width - $--Layout-gutter)) 0 auto;
-        grid-gap: var(--Layout-gutter);
+        grid-gap: $--Layout-gutter;
         grid-auto-flow: column;
         .file-navigation {
             display: flex;
@@ -27,6 +27,7 @@
             }
         }
         .content-box {
+            margin-bottom: $--base-size-16;
             .box-header {
                 background-color: $--color-canvas-subtle;
                 border-color: $--color-border-default;
@@ -41,6 +42,94 @@
             .box-body {
                 width: 100%;
                 
+            }
+        }
+    }
+    .layout-sidebar {
+        grid-column: 2/span 2;
+        width: $--Layout-sidebar-width;
+        .BorderGrid {
+            margin-top: -24px;
+            margin-bottom: -24px;
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            border-style: hidden;
+            .BorderGrid-row {
+                display: table-row;
+                .BorderGrid-cell {
+                    padding-top: 24px;
+                    padding-bottom: 24px;
+                    display: table-cell;
+                    border: 1px solid $--color-border-muted;
+                }
+            }
+        }
+    } 
+    .readme-box {
+        .js-code-block-container {
+            margin-right: 0;
+            margin-left: 0;
+            border-radius: 6px;
+            border: 1px solid $--color-border-default;
+            
+            .md-header-sticky {
+                border-top-left-radius: 6px;
+                border-top-right-radius: 6px;
+                position: sticky;
+                z-index: 30;
+                top: 0px;
+                display: flex;
+                padding: $--base-size-8;
+                align-items: center;
+                justify-content: space-between;
+                background-color: $--color-canvas-default;
+                border-bottom: $--borderWidth-thin solid $--color-border-default;
+                .header-item-flex {
+                    height: 32px;
+                    display: flex;
+                    align-items: center; 
+                    .menu-item {
+                        padding: $--base-size-8;
+                        margin-right: $--base-size-8;
+                        cursor: pointer;
+                        border-radius: 6px;
+                        height: auto;
+                    }
+                    .menu-antion {
+                        color: $--color-fg-muted;
+                        font-size: 14px;
+                    }
+                    .menu-item:hover {
+                        background-color: $--color-btn-hover-bg;
+                        border-color: $--color-btn-hover-border;
+                        transition-duration: .1s;
+                    }
+                }
+                .readme-box-title {
+                    font-size: $--text-body-size-medium;
+                    font-weight: $--base-text-weight-semibold;
+                    .Link--primary {
+                        color: $--color-fg-default;
+                    }
+                }
+                .readme-box-title:hover {
+                    .Link--primary {
+                        color: $--color-accent-fg;
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .readme-box-body {
+                border-bottom-left-radius: $--borderRadius-medium;
+                border-bottom-right-radius: $--borderRadius-medium;
+                margin-bottom: calc($--borderWidth-thin*-1);
+                border-bottom: $--borderWidth-thin solid $--color-border-default;
+                padding: $--stack-padding-normal;
+                padding-right: $--base-size-32;
+                padding-left: $--base-size-32;
+                padding-bottom: $--base-size-32;
             }
         }
     }
