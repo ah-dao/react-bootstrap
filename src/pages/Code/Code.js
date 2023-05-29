@@ -143,13 +143,16 @@ export default function Code() {
                   forkCount={data.forks_count}
                 />
               </div>
-              {
-                itemList.map((item) => <div className="BorderGrid-cell" key={item}><SidebarItem name={item} /></div>)
-              }
             </div>
-            <div className="BorderGrid-row">...</div>
-            <div className="BorderGrid-row">...</div>
-            <div className="BorderGrid-row">...</div>
+            {
+              itemList.map((item) => (
+                <div className="BorderGrid-row" key={item}>
+                  <div className="BorderGrid-cell">
+                    <SidebarItem name={item} />
+                  </div>
+                </div>
+              ))
+            }
           </div>
         </div>
       </div>
