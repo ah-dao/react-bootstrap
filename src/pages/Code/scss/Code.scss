@@ -12,38 +12,30 @@
         margin-left: $--base-size-32 !important;
         margin-right: $--base-size-32 !important;
     }
+    .content-box {
+        margin-bottom: $--base-size-16;
+        .box-header {
+            background-color: $--color-canvas-subtle;
+            border-color: $--color-border-default;
+            border-style: solid;
+            border-top-left-radius: $--borderRadius-medium;
+            border-top-right-radius: $--borderRadius-medium;
+            border-width: $--borderWidth-thin;
+            // margin: calc($--borderWidth-thin*-1) calc($--borderWidth-thin*-1) 0;
+            margin-top: calc($--borderWidth-thin*-1);
+            padding: $--stack-padding-normal;
+        }
+        .box-body {
+            width: 100%;
+            
+        }
+    }
     .repo-layout {
         display: grid;
         grid-template-columns: minmax(0, calc(100% - $--Layout-sidebar-width - $--Layout-gutter)) 0 auto;
         grid-gap: $--Layout-gutter;
         grid-auto-flow: column;
-        .file-navigation {
-            display: flex;
-            margin-bottom: $--base-size-16;
-            justify-content: space-between;
-            .branch-dropdown {
-            }
-            .flex-r {
-            }
-        }
-        .content-box {
-            margin-bottom: $--base-size-16;
-            .box-header {
-                background-color: $--color-canvas-subtle;
-                border-color: $--color-border-default;
-                border-style: solid;
-                border-top-left-radius: $--borderRadius-medium;
-                border-top-right-radius: $--borderRadius-medium;
-                border-width: $--borderWidth-thin;
-                // margin: calc($--borderWidth-thin*-1) calc($--borderWidth-thin*-1) 0;
-                margin-top: calc($--borderWidth-thin*-1);
-                padding: $--stack-padding-normal;
-            }
-            .box-body {
-                width: 100%;
-                
-            }
-        }
+        
     }
     .layout-sidebar {
         grid-column: 2/span 2;

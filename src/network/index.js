@@ -1,6 +1,7 @@
 import { Octokit } from 'octokit'
 
 const octokit = new Octokit({
+  auth: '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',
   // auth: 'token',
 })
 
@@ -50,11 +51,14 @@ export async function getUserInfo({ username }) {
   return response
 }
 
-export async function getRepoContent({ owner, repo, path = null }) {
+export async function getRepoContent({
+  owner, repo, path = undefined, ref,
+}) {
   const response = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
     owner,
     repo,
     path,
+    ref,
     headers: {
       'X-GitHub-Api-Version': '2022-11-28',
     },
@@ -89,6 +93,18 @@ export async function mdRender({ text, mode = null, context = null }) {
     text,
     mode,
     context,
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  })
+  return response
+}
+
+// 获取第一页的分支
+export async function getRepoBranches({ owner, repo }) {
+  const response = await octokit.request('GET /repos/{owner}/{repo}/branches', {
+    owner,
+    repo,
     headers: {
       'X-GitHub-Api-Version': '2022-11-28',
     },

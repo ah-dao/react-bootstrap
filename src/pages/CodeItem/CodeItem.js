@@ -3,6 +3,7 @@ import { Button } from 'antd'
 import { useLoaderData } from 'react-router-dom'
 import { getRepoContent } from '../../network'
 import { BoxRow } from '../../components/BoxRow'
+import '../Code/scss/Code.scss'
 
 export async function loader({ params }) {
   const { '*': splat } = params
@@ -29,13 +30,13 @@ export default function CodeItem() {
   useEffect(() => {
   })
   return (
-    <div>
+    <div className="repo-content-pjax-container">
       <div className="file-navigation">
         <Button className="branch-dropdown">Default Button</Button>
-        <div className="flex-r">
+        {/* <div className="flex-r">
           <Button className="to-file">Go To File</Button>
           <Button className="code-install">Default Button</Button>
-        </div>
+        </div> */}
       </div>
       <div className="content-box">
         <div className="box-header">...</div>
