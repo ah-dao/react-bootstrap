@@ -1,8 +1,7 @@
 import { Octokit } from 'octokit'
 
 const octokit = new Octokit({
-  auth: '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',
-  // auth: 'token',
+  auth: 'token',
 })
 
 function splitGetParams(url) {
