@@ -1,7 +1,8 @@
 import { Octokit } from 'octokit'
 
 const octokit = new Octokit({
-  auth: 'token',
+  auth: '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',
+  // auth: 'token',
 })
 
 function splitGetParams(url) {
@@ -12,7 +13,9 @@ function splitGetParams(url) {
   return page
 }
 
-export async function getUserRepo({ username, page }) {
+export async function getUserRepo({
+  username, page, sort, type,
+}) {
   const nextPattern = /(?<=<)([\S]*)(?=>; rel="Next")/i
   const lastPattern = /(?<=<)([\S]*)(?=>; rel="Last")/i
 
@@ -20,6 +23,8 @@ export async function getUserRepo({ username, page }) {
     username,
     per_page: 5,
     page,
+    sort,
+    type,
     headers: {
       'X-GitHub-Api-Version': '2022-11-28',
     },

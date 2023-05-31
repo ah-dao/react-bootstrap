@@ -3,10 +3,9 @@ import { Select } from 'antd'
 import '../scss/SelectItem.scss'
 import PropTypes from 'prop-types'
 
-const handleChange = (value) => {
-  console.log(`selected ${value}`)
-}
-export default function SelectItem({ label, options }) {
+export default function SelectItem({
+  label, options, setCur, onChangeSelect,
+}) {
   const optionsArr = [
     {
       label,
@@ -20,7 +19,12 @@ export default function SelectItem({ label, options }) {
       style={{
         width: 200,
       }}
-      onChange={handleChange}
+      onChange={(value) => {
+        const temp = {}
+        temp[label] = value
+        temp.setCur = setCur
+        onChangeSelect(temp)
+      }}
       options={optionsArr}
     />
   )
@@ -29,4 +33,6 @@ export default function SelectItem({ label, options }) {
 SelectItem.propTypes = {
   label: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  setCur: PropTypes.func.isRequired,
+  onChangeSelect: PropTypes.func.isRequired,
 }
