@@ -1,9 +1,17 @@
 import { Octokit } from 'octokit'
+import Nprogress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 const octokit = new Octokit({
-  auth: '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',
-  // auth: 'token',
+  auth: 'token',
 })
+
+const requestFunc = async (reqStr, params, npFlag) => {
+  npFlag && Nprogress.start()
+  const response = await octokit.request(reqStr, { ...params })
+  npFlag && Nprogress.done()
+  return response
+}
 
 function splitGetParams(url) {
   // 切分获取的 link url，返回参数 page
@@ -19,7 +27,17 @@ export async function getUserRepo({
   const nextPattern = /(?<=<)([\S]*)(?=>; rel="Next")/i
   const lastPattern = /(?<=<)([\S]*)(?=>; rel="Last")/i
 
-  const response = await octokit.request('GET /users/{username}/repos', {
+  // const response = await octokit.request('GET /users/{username}/repos', {
+  //   username,
+  //   per_page: 5,
+  //   page,
+  //   sort,
+  //   type,
+  //   headers: {
+  //     'X-GitHub-Api-Version': '2022-11-28',
+  //   },
+  // })
+  const response = await requestFunc('GET /users/{username}/repos', {
     username,
     per_page: 5,
     page,
@@ -28,7 +46,7 @@ export async function getUserRepo({
     headers: {
       'X-GitHub-Api-Version': '2022-11-28',
     },
-  })
+  }, false)
   const linkHeader = response.headers.link
   const pagesRemaining = linkHeader && linkHeader.includes('rel="next"')
   const lastRemaining = linkHeader && linkHeader.includes('rel="last"')
@@ -46,12 +64,18 @@ export async function getUserRepo({
 }
 
 export async function getUserInfo({ username }) {
-  const response = await octokit.request('GET /users/{username}', {
+  // const response = await octokit.request('GET /users/{username}', {
+  //   username,
+  //   headers: {
+  //     'X-GitHub-Api-Version': '2022-11-28',
+  //   },
+  // })
+  const response = await requestFunc('GET /users/{username}', {
     username,
     headers: {
       'X-GitHub-Api-Version': '2022-11-28',
     },
-  })
+  }, false)
   return response
 }
 
@@ -67,40 +91,66 @@ export async function getRepoContent({
       'X-GitHub-Api-Version': '2022-11-28',
     },
   })
+  // const response = await requestFunc('GET /repos/{owner}/{repo}/contents/{path}', {
+  //   owner,
+  //   repo,
+  //   path,
+  //   ref,
+  //   headers: {
+  //     'X-GitHub-Api-Version': '2022-11-28',
+  //   },
+  // }, true)
   return response
 }
 
 export async function getARepo({ owner, repo }) {
-  const response = await octokit.request('GET /repos/{owner}/{repo}', {
+  // const response = await octokit.request('GET /repos/{owner}/{repo}', {
+  //   owner,
+  //   repo,
+  //   headers: {
+  //     'X-GitHub-Api-Version': '2022-11-28',
+  //   },
+  // })
+  const response = await requestFunc('GET /repos/{owner}/{repo}', {
     owner,
     repo,
     headers: {
       'X-GitHub-Api-Version': '2022-11-28',
     },
-  })
+  }, false)
   return response
 }
 
 export async function getRepoReadme({ owner, repo }) {
-  const response = await octokit.request('GET /repos/{owner}/{repo}/readme', {
+  // const response = await octokit.request('GET /repos/{owner}/{repo}/readme', {
+  // })
+  const response = await requestFunc('GET /repos/{owner}/{repo}/readme', {
     owner,
     repo,
     headers: {
       'X-GitHub-Api-Version': '2022-11-28',
     },
-  })
+  }, false)
   return response
 }
 
 export async function mdRender({ text, mode = null, context = null }) {
-  const response = await octokit.request('POST /markdown', {
+  // const response = await octokit.request('POST /markdown', {
+  //   text,
+  //   mode,
+  //   context,
+  //   headers: {
+  //     'X-GitHub-Api-Version': '2022-11-28',
+  //   },
+  // })
+  const response = await requestFunc('POST /markdown', {
     text,
     mode,
     context,
     headers: {
       'X-GitHub-Api-Version': '2022-11-28',
     },
-  })
+  }, false)
   return response
 }
 
