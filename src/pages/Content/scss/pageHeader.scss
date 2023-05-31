@@ -3,7 +3,6 @@
 @import '../../../style/MixStyle.scss';
 .page-head-class {
     @include page-head-mix;
-    height: 102px !important;
     .content-container:nth-of-type(1) {
         padding-top: $--base-size-16;
     }
