@@ -2,13 +2,16 @@
 
 .repo-content-pjax-container {
     margin-top: $--base-size-24;
+    max-width: 1080px;
     margin-left: auto;
     margin-right: auto;
-    @media (min-width: 768px) {
+    padding-bottom: $--base-size-32;
+    border-bottom: 1px solid $--color-border-default;
+    @media (max-width: 768px) {
         margin-left: $--base-size-24 !important;
         margin-right: $--base-size-24 !important;
     }
-    @media (min-width: 1012px) {
+    @media (max-width: 1012px) {
         margin-left: $--base-size-32 !important;
         margin-right: $--base-size-32 !important;
     }

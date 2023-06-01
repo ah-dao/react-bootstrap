@@ -8,6 +8,7 @@ import ListItem from './components/ListItem'
 import './scss/Repositories.scss'
 
 import { getUserRepo } from '../../network'
+import FancyRoute from '../../utils/FancyRoute'
 
 // const { Search } = Input
 export async function loader({ params }) {
@@ -26,7 +27,7 @@ export async function loader({ params }) {
     data, lastPage, nextPage, params,
   }
 }
-export default function Repositories() {
+function Repositories() {
   // const onSearch = (value) => console.log(value)
   const { data, lastPage, params } = useLoaderData()
   const [searchParams] = useState(params)
@@ -191,3 +192,5 @@ export default function Repositories() {
     </div>
   )
 }
+
+export default FancyRoute(Repositories)

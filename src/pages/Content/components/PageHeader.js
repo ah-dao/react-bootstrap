@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom'
 import { Menu, Button } from 'antd'
 import PropType from 'prop-types'
 import {
-  InfoCircleOutlined, CodeOutlined, BookOutlined, ForkOutlined, StarOutlined,
+  CodeOutlined, BookOutlined, ForkOutlined, StarOutlined,
 } from '@ant-design/icons'
 import '../scss/pageHeader.scss'
 
@@ -23,35 +23,35 @@ export default function PageHeader({
       key: 'code',
       icon: <CodeOutlined />,
     },
-    {
-      label: (
-        <NavLink
-          to="issues"
-        >
-          Issues
-        </NavLink>
-      ),
-      key: 'issues',
-      icon: <InfoCircleOutlined />,
-    },
+    // {
+    //   label: (
+    //     <NavLink
+    //       to="issues"
+    //     >
+    //       Issues
+    //     </NavLink>
+    //   ),
+    //   key: 'issues',
+    //   icon: <InfoCircleOutlined />,
+    // },
   ]
   const itemClick = ({ key }) => {
     setCurrent(key)
   }
   const upperAlpha = (str) => str.slice(0, 1).toUpperCase() + str.slice(1)
   return (
-    <header className="page-head-class">
+    <header className="page-head-class page-content-class">
       <div className="content-container">
         <div className="d-flex title-container">
           <div className="flex-auto">
             <div className="d-flex title-items">
               <BookOutlined />
               <span className="flex-self-stretch auther">
-                <Link>{ owner }</Link>
+                <Link to={`/${owner}/repositories`}>{ owner }</Link>
               </span>
               <span className="flex-self-stretch mx">/</span>
               <span className="flex-self-stretch name">
-                <Link>{repo}</Link>
+                <a role="button">{repo}</a>
               </span>
               <span className="label Label--secondary content-label">{upperAlpha(visibility)}</span>
             </div>

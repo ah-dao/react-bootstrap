@@ -4,6 +4,7 @@ import { useLoaderData } from 'react-router-dom'
 import { getRepoContent } from '../../network'
 import { BoxRow } from '../../components/BoxRow'
 import '../Code/scss/Code.scss'
+import FancyRoute from '../../utils/FancyRoute'
 
 export async function loader({ params }) {
   const { '*': splat } = params
@@ -24,7 +25,7 @@ export async function loader({ params }) {
   return { params, path: splat, data }
 }
 
-export default function CodeItem() {
+function CodeItem() {
   const { data } = useLoaderData()
 
   useEffect(() => {
@@ -58,3 +59,5 @@ export default function CodeItem() {
     </div>
   )
 }
+
+export default FancyRoute(CodeItem)

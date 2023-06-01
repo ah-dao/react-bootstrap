@@ -1,7 +1,7 @@
 import React from 'react'
 import PropType from 'prop-types'
 import {
-  ReadOutlined, ForkOutlined, StarOutlined,
+  ReadOutlined, ForkOutlined, StarOutlined, EyeOutlined,
 } from '@ant-design/icons'
 import '../scss/About.scss'
 import { Link } from 'react-router-dom'
@@ -45,7 +45,7 @@ export default function About({
       </div>
       <div className="mt-item">
         <Link>
-          <StarOutlined />
+          <EyeOutlined />
           <strong>{`${watchCount} `}</strong>
           <span>watching</span>
         </Link>
@@ -66,9 +66,16 @@ export default function About({
   )
 }
 About.propTypes = {
-  description: PropType.string.isRequired,
-  topics: PropType.arrayOf(PropType.string).isRequired,
-  starCount: PropType.number.isRequired,
-  watchCount: PropType.number.isRequired,
-  forkCount: PropType.number.isRequired,
+  description: PropType.string,
+  topics: PropType.arrayOf(PropType.string),
+  starCount: PropType.number,
+  watchCount: PropType.number,
+  forkCount: PropType.number,
+}
+About.defaultProps = {
+  description: '',
+  topics: [],
+  starCount: 0,
+  watchCount: 0,
+  forkCount: 0,
 }

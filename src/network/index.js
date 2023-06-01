@@ -3,7 +3,7 @@ import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 const octokit = new Octokit({
-  auth: 'token',
+  auth: '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',
 })
 
 const requestFunc = async (reqStr, params, npFlag) => {
@@ -27,16 +27,6 @@ export async function getUserRepo({
   const nextPattern = /(?<=<)([\S]*)(?=>; rel="Next")/i
   const lastPattern = /(?<=<)([\S]*)(?=>; rel="Last")/i
 
-  // const response = await octokit.request('GET /users/{username}/repos', {
-  //   username,
-  //   per_page: 5,
-  //   page,
-  //   sort,
-  //   type,
-  //   headers: {
-  //     'X-GitHub-Api-Version': '2022-11-28',
-  //   },
-  // })
   const response = await requestFunc('GET /users/{username}/repos', {
     username,
     per_page: 5,
@@ -46,7 +36,7 @@ export async function getUserRepo({
     headers: {
       'X-GitHub-Api-Version': '2022-11-28',
     },
-  }, false)
+  }, true)
   const linkHeader = response.headers.link
   const pagesRemaining = linkHeader && linkHeader.includes('rel="next"')
   const lastRemaining = linkHeader && linkHeader.includes('rel="last"')
@@ -78,7 +68,7 @@ export async function getUserInfo({ username }) {
   }, false)
   return response
 }
-
+// 初始化仓库数据，loader 中请求，路由拦截已经显示了进度条
 export async function getRepoContent({
   owner, repo, path = undefined, ref,
 }) {
@@ -91,15 +81,21 @@ export async function getRepoContent({
       'X-GitHub-Api-Version': '2022-11-28',
     },
   })
-  // const response = await requestFunc('GET /repos/{owner}/{repo}/contents/{path}', {
-  //   owner,
-  //   repo,
-  //   path,
-  //   ref,
-  //   headers: {
-  //     'X-GitHub-Api-Version': '2022-11-28',
-  //   },
-  // }, true)
+  return response
+}
+// 重新请求仓库数据，按钮点击时请求，需要拦截使用进度条
+export async function resetRepoContent({
+  owner, repo, path = undefined, ref,
+}) {
+  const response = await requestFunc('GET /repos/{owner}/{repo}/contents/{path}', {
+    owner,
+    repo,
+    path,
+    ref,
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  }, true)
   return response
 }
 
@@ -157,6 +153,29 @@ export async function mdRender({ text, mode = null, context = null }) {
 // 获取第一页的分支
 export async function getRepoBranches({ owner, repo }) {
   const response = await octokit.request('GET /repos/{owner}/{repo}/branches', {
+    owner,
+    repo,
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  })
+  return response
+}
+
+// 获取仓库的贡献者
+export async function getrRepoContributors({ owner, repo }) {
+  const response = await octokit.request('GET /repos/{owner}/{repo}/contributors', {
+    owner,
+    repo,
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  })
+  return response
+}
+// 获取仓库的语言
+export async function getrRepoLanguages({ owner, repo }) {
+  const response = await octokit.request('GET /repos/{owner}/{repo}/languages', {
     owner,
     repo,
     headers: {

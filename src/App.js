@@ -3,10 +3,8 @@ import './App.css'
 import {
   Layout, theme,
 } from 'antd'
-import { Outlet } from 'react-router-dom'
+import { Outlet, ScrollRestoration } from 'react-router-dom'
 import { HeaderDefault } from './components'
-// import { useLoaderData } from 'react-router-dom'
-// import routes from './router/routes'
 
 function App() {
   const { Content, Footer } = Layout
@@ -23,14 +21,11 @@ function App() {
             <Outlet />
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
+        <Footer style={{ textAlign: 'center' }}>A little demo</Footer>
       </Layout>
+      <ScrollRestoration />
     </div>
   )
 }
 
 export default App
-
-export function loader(item) {
-  return item
-}
